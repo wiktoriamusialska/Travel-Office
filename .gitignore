@@ -11,3 +11,4 @@
 /src/main/resources/archetype-resources/pom.xml
 /target/classes/archetype-resources/pom.xml
 /.idea/.gitignore
+/target/test-classes/SignUpTest.class
