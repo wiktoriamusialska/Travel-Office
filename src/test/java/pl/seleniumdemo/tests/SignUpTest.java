@@ -1,3 +1,5 @@
+package pl.seleniumdemo.tests;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,13 +12,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
-public class SignUpTest {
+public class SignUpTest extends BaseTest{
     @Test
     public void signUp() {
-        WebDriver driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.manage().window().maximize();
-        driver.get("http://www.kurs-selenium.pl/demo/");
+
         String lastName="Musialska";
         int randomNumber = (int) (Math.random()*1000);
         String email="tester"+randomNumber+"@tester.pl";

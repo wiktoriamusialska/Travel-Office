@@ -5,10 +5,10 @@
 /target/classes/META-INF/maven/archetype.xml
 /.idea/compiler.xml
 /.idea/encodings.xml
-/target/test-classes/HotelSearch.class
+/target/test-classes/pl.seleniumdemo.tests.HotelSearch.class
 /.idea/jarRepositories.xml
 /.idea/misc.xml
 /src/main/resources/archetype-resources/pom.xml
 /target/classes/archetype-resources/pom.xml
 /.idea/.gitignore
-/target/test-classes/SignUpTest.class
+/target/test-classes/pl.seleniumdemo.tests.SignUpTest.class
