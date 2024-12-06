@@ -12,3 +12,12 @@
 /target/classes/archetype-resources/pom.xml
 /.idea/.gitignore
 /target/test-classes/pl.seleniumdemo.tests.SignUpTest.class
+/target/test-classes/pl/seleniumdemo/tests/HotelSearch.class
+/target/test-classes/pl/seleniumdemo/tests/HotelSearch2Scenario.class
+/target/test-classes/pl/seleniumdemo/pages/HotelSearchPage.class
+/target/test-classes/pl/seleniumdemo/pages/LoggedUserPage.class
+/target/test-classes/pl/seleniumdemo/pages/ResultsPage.class
+/target/test-classes/pl/seleniumdemo/pages/SignUpPage.class
+/target/test-classes/pl/seleniumdemo/tests/SignUpTest.class
+/target/test-classes/pl/seleniumdemo/tests/TestValidation.class
+/target/test-classes/pl/seleniumdemo/model/User.class
