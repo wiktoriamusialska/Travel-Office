@@ -12,15 +12,16 @@ import pl.seleniumdemo.pages.ResultsPage;
 import java.time.Duration;
 
 public class HotelSearch2Scenario extends BaseTest {
-@Test
-public void hotelSearch2Scenario(){
+    @Test
+    public void hotelSearch2Scenario() {
 
-    HotelSearchPage hotelSearchPage = new HotelSearchPage(driver);
-    hotelSearchPage.setDates("25/04/2021", "30/04/2021");
-    hotelSearchPage.setTravellers(0,1);
-    hotelSearchPage.performSearch();
+        HotelSearchPage hotelSearchPage = new HotelSearchPage(driver);
+        hotelSearchPage.setDates("25/04/2021", "30/04/2021");
+        hotelSearchPage.setTravellers(0, 1);
+        hotelSearchPage.performSearch();
 
-    ResultsPage resultsPage = new ResultsPage(driver);
-    Assert.assertTrue(resultsPage.resultHeading.isDisplayed());
-    Assert.assertEquals(resultsPage.getHeadingText(),"No Results Found");
-    }}
+        ResultsPage resultsPage = new ResultsPage(driver);
+        Assert.assertTrue(resultsPage.resultHeading.isDisplayed());
+        Assert.assertEquals(resultsPage.getHeadingText(), "No Results Found");
+    }
+}

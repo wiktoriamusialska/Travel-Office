@@ -1,40 +1,78 @@
 package pl.seleniumdemo.tests;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pl.seleniumdemo.model.User;
+import pl.seleniumdemo.pages.HotelSearchPage;
+import pl.seleniumdemo.pages.LoggedUserPage;
+import pl.seleniumdemo.pages.SignUpPage;
 
-import java.time.Duration;
-import java.util.List;
-import java.util.stream.Collectors;
 
-
-public class SignUpTest extends BaseTest{
+public class SignUpTest extends BaseTest {
     @Test
     public void signUp() {
+        String lastName = "Musialska";
+        int randomNumber = (int) (Math.random() * 1000);
+        String email = "tester" + randomNumber + "@tester.pl";
 
-        String lastName="Musialska";
-        int randomNumber = (int) (Math.random()*1000);
-        String email="tester"+randomNumber+"@tester.pl";
-        driver.findElements(By.xpath(("//li[@id='li_myaccount']")))
-                            .stream()
-                            .filter(WebElement::isDisplayed)
-                            .findFirst()
-                            .ifPresent(WebElement::click);
-        driver.findElements(By.xpath("//a[text()='  Sign Up']")).get(1).click();
-        driver.findElement(By.name("firstname")).sendKeys("Wiktoria");
-        driver.findElement(By.name("lastname")).sendKeys("Musialska");
-        driver.findElement(By.name("phone")).sendKeys("111222333");
-        driver.findElement(By.name("email")).sendKeys(email);
-        driver.findElement(By.name("password")).sendKeys("Test1234");
-        driver.findElement(By.name("confirmpassword")).sendKeys("Test1234");
-        driver.findElement(By.xpath("//button[@type='submit' and text()=' Sign Up']")).click();
-        WebElement heading = driver.findElement(By.xpath("//h3[@class='RTL']"));
-        Assert.assertTrue(heading.getText().contains(lastName));
-        Assert.assertEquals( heading.getText(),"Hi, Wiktoria Musialska");
-        driver.quit();
+        HotelSearchPage hotelSearchPage = new HotelSearchPage(driver);
+        hotelSearchPage.openSignUpForm();
+
+        SignUpPage signUpPage = new SignUpPage(driver);
+        signUpPage.setFirstName("Wiktoria");
+        signUpPage.setLastName(lastName);
+        signUpPage.setPhone("111222333");
+        signUpPage.setEmail(email);
+        signUpPage.setPassword("Test1234");
+        signUpPage.setConfirmPassword("Test1234");
+        signUpPage.signUp();
+        LoggedUserPage loggedUserPage = new LoggedUserPage(driver);
+        Assert.assertEquals(loggedUserPage.getHeadingText2(), "Hi, Wiktoria Musialska");
+        Assert.assertTrue(loggedUserPage.getHeadingText2().contains(lastName));
+
+    }
+
+    @Test
+    public void signUp2() {
+
+        String lastName = "Musialska";
+        int randomNumber = (int) (Math.random() * 1000);
+        String email = "tester" + randomNumber + "@tester.pl";
+
+        HotelSearchPage hotelSearchPage = new HotelSearchPage(driver);
+        hotelSearchPage.openSignUpForm();
+
+        SignUpPage signUpPage = new SignUpPage(driver);
+        signUpPage.fillSignUpForm("Wiktoria", lastName, "1111111111", email, "tester1234");
+
+
+        LoggedUserPage loggedUserPage = new LoggedUserPage(driver);
+        Assert.assertEquals(loggedUserPage.getHeadingText2(), "Hi, Wiktoria Musialska");
+        Assert.assertTrue(loggedUserPage.getHeadingText2().contains(lastName));
+
+    }
+
+    @Test
+    public void signUp3() {
+        int randomNumber = (int) (Math.random() * 1000);
+        String email = "tester" + randomNumber + "@tester.pl";
+        User user = new User();
+        user.setFirstName("Wiktoria");
+        user.setLastName("Musialska");
+        user.setPhone("111111111");
+        user.setEmail(email);
+        user.setPassword("tester123456");
+
+        HotelSearchPage hotelSearchPage = new HotelSearchPage(driver);
+        hotelSearchPage.openSignUpForm();
+
+        SignUpPage signUpPage = new SignUpPage(driver);
+        signUpPage.fillSignUpForm(user);
+
+
+        LoggedUserPage loggedUserPage = new LoggedUserPage(driver);
+        Assert.assertEquals(loggedUserPage.getHeadingText2(), "Hi, Wiktoria Musialska");
+        Assert.assertTrue(loggedUserPage.getHeadingText2().contains(user.getLastName()));
+
     }
 }
